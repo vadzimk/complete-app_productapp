@@ -1,4 +1,4 @@
-Limitations of this application:
+## Limitations of this application:
 - statically defined data _not using web service
 - state data is pushed to the top of the application *model data stays in the ProductsAndSuppliers hoc.
 - user is forced to work through specific sequence -not usig url routing.
