@@ -1,4 +1,5 @@
 // Switches between the product and supplier features.
+// it is a container that renders a button for each of its children and displays only the one selected by the user.
 
 import React from 'react';
 

@@ -52,7 +52,7 @@ export class SupplierEditor extends React.Component {
                     <input
                         className="form-control"
                         name="name"
-                        value={this.formData.name}
+                        value={this.state.formData.name}
                         onChange={this.handleChange}
                     />
                 </div>

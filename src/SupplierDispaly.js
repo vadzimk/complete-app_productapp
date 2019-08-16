@@ -59,7 +59,7 @@ export class SupplierDispaly extends React.Component {
             return <div className="m-2">
                 <SupplierTable
                     suppliers={this.props.suppliers}
-                    editCallBack={this.startEditing}
+                    editCallback={this.startEditing}
                     deleteCallback={this.props.deleteCallback}
                 />
                 <div className="text-center">
