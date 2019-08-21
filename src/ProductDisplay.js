@@ -3,17 +3,20 @@
 import React from 'react';
 import {ProductEditor} from "./ProductEditor";
 import {ProductTable} from "./ProductTable";
+import {connect} from "react-redux";
+import {deleteProduct, saveProduct} from "./store";
 
-export class ProductDisplay extends React.Component{
-    constructor(props){
+
+class ProductDisplay extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             showEditor: false,
             selectedProduct: null,
         }
     }
 
-    saveProduct=(product)=>{
+    saveProduct = (product) => {
         this.props.saveCallback(product);
         this.setState(
             {
@@ -23,7 +26,7 @@ export class ProductDisplay extends React.Component{
         );
     };
 
-    cancelEditing=()=>{
+    cancelEditing = () => {
         this.setState(
             {
                 showEditor: false,
@@ -32,7 +35,7 @@ export class ProductDisplay extends React.Component{
         );
     };
 
-    startEditing=(product)=>{
+    startEditing = (product) => {
         this.setState(
             {
                 showEditor: true,
@@ -41,7 +44,7 @@ export class ProductDisplay extends React.Component{
         );
     };
 
-    createProduct=()=>{
+    createProduct = () => {
         this.setState(
             {
                 showEditor: true,
@@ -52,7 +55,7 @@ export class ProductDisplay extends React.Component{
 
     render() {
 
-        if(this.state.showEditor){
+        if (this.state.showEditor) {
             return <ProductEditor
                 key={this.state.selectedProduct.id || -1}
                 product={this.state.selectedProduct}
@@ -69,7 +72,7 @@ export class ProductDisplay extends React.Component{
                 />
                 <div className="text-center">
                     <button className="btn btn-primary m-1"
-                        onClick={this.createProduct}
+                            onClick={this.createProduct}
                     >
                         Create Product
                     </button>
@@ -78,3 +81,16 @@ export class ProductDisplay extends React.Component{
         }
     }
 }
+
+
+const mapStateToProps = (storeData) => ({
+    products: storeData.products
+});
+
+const mapDispatchToProps =  { //object form
+    saveCallback: saveProduct,
+    deleteCallback: deleteProduct,
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDisplay);

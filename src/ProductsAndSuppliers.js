@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Selector} from "./Selector";
-import {ProductDisplay} from "./ProductDisplay";
+import ProductDisplay from "./ProductDisplay";
 import {SupplierDispaly} from "./SupplierDispaly";
 
 export default class ProductsAndSuppliers extends React.Component {

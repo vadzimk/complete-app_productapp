@@ -3,7 +3,7 @@
 
 
 
-export const T = {
+export default {
     /** Model data types: **/
     PRODUCTS: "products",
     SUPPLIERS: "suppliers",
