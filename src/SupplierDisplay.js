@@ -3,8 +3,11 @@
 import React from 'react';
 import {SupplierEditor} from "./SupplierEditor";
 import {SupplierTable} from "./SupplierTable";
+import {connect} from "react-redux";
 
-export class SupplierDispaly extends React.Component {
+import {deleteSupplier, saveSupplier} from "./store";
+
+class SupplierDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -74,3 +77,15 @@ export class SupplierDispaly extends React.Component {
         }
     }
 }
+
+
+const mapStateToProps=(storeData)=>({
+    suppliers: storeData.suppliers
+});
+
+const mapDispatchToProps={
+    saveCallback: saveSupplier,
+    deleteCallback: deleteSupplier
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SupplierDisplay);

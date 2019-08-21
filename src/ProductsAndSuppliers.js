@@ -1,9 +1,13 @@
 // Provides data tha will be displayed by the application and implementation for the callback functions
 
+
+//Redundant after connecting to the Redux store --
+//ProductDisplay and SupplierDisplay are displayed directly in the App component
+
 import React from 'react';
 import {Selector} from "./Selector";
 import ProductDisplay from "./ProductDisplay";
-import {SupplierDispaly} from "./SupplierDispaly";
+import SupplierDisplay from "./SupplierDisplay";
 
 export default class ProductsAndSuppliers extends React.Component {
     constructor(props) {
@@ -72,7 +76,7 @@ export default class ProductsAndSuppliers extends React.Component {
                         saveCallback={p => this.saveData("products", p)}
                         deleteCallback={p => this.deleteData("products", p)}
                     />
-                    <SupplierDispaly
+                    <SupplierDisplay
                         name="Suppliers"
                         suppliers={this.state.suppliers}
                         saveCallback={s => this.saveData("suppliers", s)}
