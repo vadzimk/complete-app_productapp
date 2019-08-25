@@ -21,6 +21,6 @@ export default function (storeData, action) { //storeData from the book is state
                     p.id != action.payload)
             };
         default:
-            return storeData || initialData;
+            return storeData || initialData.modelData;
     }
 }
