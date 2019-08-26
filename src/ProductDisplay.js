@@ -61,7 +61,7 @@ class ProductDisplay extends React.Component {
 
     render() {
 
-        if (this.state.showEditor) {
+        if (this.props.editing) {
             return <ConnectedEditor key={this.props.selected.id || -1}/>
             // return <ProductEditor
             //     key={this.state.selectedProduct.id || -1}
