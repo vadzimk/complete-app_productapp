@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import T from './T';
-import {endEditing} from "./stateActions";
+import {endEditing} from "./stateActionCreators";
 import {saveProduct, saveSupplier} from "./modelActionCreators";
 
 
