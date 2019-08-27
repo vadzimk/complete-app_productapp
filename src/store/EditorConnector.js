@@ -16,10 +16,15 @@ export const EditorConnector = (dataType, presentationComponent) => {
         };
     };
 
-    const mapDispatchToProps = {
+    const mapDispatchToProps = (dispatch) => {
+        return {
+            cancelCallback: () => dispatch(endEditing()),
+            saveCallback: data => {
+                dispatch ((dataType === T.PRODUCTS ? saveProduct : saveSupplier)(data));
+                dispatch(endEditing());
 
-        cancelCallback:endEditing,
-        saveCallback: dataType === T.PRODUCTS ? saveProduct : saveSupplier,
+            },
+        };
     };
 
 
