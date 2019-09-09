@@ -1,5 +1,6 @@
 import React from 'react';
 import {startCreatingProduct} from "./stateActionCreators";
+import {resetStore} from "./CustomReducerEnhancer";
 
 export class StoreAccess extends React.Component {
 
@@ -40,7 +41,7 @@ export class StoreAccess extends React.Component {
     }
 
     dispatchAction=()=>{
-        this.props.store.dispatch(startCreatingProduct())
+        this.props.store.dispatch(resetStore());
     };
 
     render() {
