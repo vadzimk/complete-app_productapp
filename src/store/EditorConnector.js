@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import T from './T';
 import {endEditing} from "./stateActionCreators";
 import {saveProduct, saveSupplier} from "./modelActionCreators";
+import {saveAndEndEditing} from "./multiActionCreators";
 
 
 export const EditorConnector = (dataType, presentationComponent) => {
@@ -16,16 +17,23 @@ export const EditorConnector = (dataType, presentationComponent) => {
         };
     };
 
-    const mapDispatchToProps = (dispatch) => {
-        return {
-            cancelCallback: () => dispatch(endEditing()),
-            saveCallback: data => {
-                dispatch ((dataType === T.PRODUCTS ? saveProduct : saveSupplier)(data));
-                dispatch(endEditing());
 
-            },
-        };
+    const mapDispatchToProps = {
+        cancelCallback: endEditing,
+        saveCallback: (data) => saveAndEndEditing(data, dataType)
     };
+
+    //after applying middleware mapDispatchToProps will become a plain object
+    // const mapDispatchToProps = (dispatch) => {
+    //     return {
+    //         cancelCallback: () => dispatch(endEditing()),
+    //         saveCallback: data => {
+    //             dispatch ((dataType === T.PRODUCTS ? saveProduct : saveSupplier)(data));
+    //             dispatch(endEditing());
+    //
+    //         },
+    //     };
+    // };
 
 
     return connect(mapStateToProps, mapDispatchToProps)(presentationComponent);
