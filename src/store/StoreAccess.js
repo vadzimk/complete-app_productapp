@@ -11,6 +11,7 @@ export class StoreAccess extends React.Component {
             state: (storeState) => storeState.stateData
         };
         this.state = this.selectData();
+        this.buttonRef = React.createRef();
     }
 
 
@@ -41,13 +42,17 @@ export class StoreAccess extends React.Component {
     }
 
     dispatchAction=()=>{
-        this.props.store.dispatch(resetStore());
+        this.buttonRef.current.disabled = true;
+
+        this.props.store.dispatch(resetStore())
+            .then(data=>this.buttonRef.current.disabled=false);
     };
 
     render() {
         return <>
             <div className="text-center">
                 <button className="btn btn-primary m-1"
+                        ref={this.buttonRef}
                         onClick={this.dispatchAction}
                 >
                     Dispatch Action
