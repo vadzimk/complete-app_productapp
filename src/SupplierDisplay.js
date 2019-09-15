@@ -70,7 +70,7 @@ class SupplierDisplay extends React.Component {
             // />
         } else {
             return <div className="m-2">
-                <ConnectedTable/>
+                <ConnectedTable needSuppliers={true}/>
 
                 { /*<SupplierTable
                     suppliers={this.props.suppliers}

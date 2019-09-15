@@ -6,10 +6,26 @@ import {deleteProduct, deleteSupplier} from "./modelActionCreators";
 
 export const TableConnector = (dataType, presentationComponent) => {
 
-    const mapStateToProps = (storeData) => {
-        return {
-            products: storeData.modelData[T.PRODUCTS],
-            suppliers: storeData.modelData[T.SUPPLIERS],
+    const mapStateToProps = (storeData, ownProps) => {
+
+        if(!ownProps.needSuppliers){
+            return {
+                products: storeData.modelData[T.PRODUCTS]
+            }
+        } else {
+            return {
+                products: storeData.modelData[T.PRODUCTS],
+                suppliers: storeData.modelData[T.SUPPLIERS].map(supp=>(
+                    {
+                    ...supp,
+                        products: supp.products.map(id=>
+                            storeData.modelData[T.PRODUCTS]
+                                .find(p=>p.id===Number(id) || id)
+                                .map(val=>val.name || val)
+                        )
+                }
+                )),
+            }
         }
     };
 

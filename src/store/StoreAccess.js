@@ -44,7 +44,7 @@ export class StoreAccess extends React.Component {
     dispatchAction=()=>{
         this.buttonRef.current.disabled = true;
 
-        this.props.store.dispatch(resetStore())
+        this.props.store.dispatchAsync(resetStore())
             .then(data=>this.buttonRef.current.disabled=false);
     };
 
