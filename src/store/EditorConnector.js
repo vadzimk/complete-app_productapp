@@ -36,5 +36,13 @@ export const EditorConnector = (dataType, presentationComponent) => {
     // };
 
 
-    return connect(mapStateToProps, mapDispatchToProps)(presentationComponent);
+    //combines the properties from each props object
+    const mergeProps =(dataProps, functionProps, ownProps)=>{
+        return {
+            ...dataProps,
+            ...functionProps,
+            ...ownProps, //ownProps will be acting if there is a name clash in props.
+        }
+    };
+    return connect(mapStateToProps, mapDispatchToProps, mergeProps)(presentationComponent);
 };
