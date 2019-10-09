@@ -18,11 +18,11 @@ export const TableConnector = (dataType, presentationComponent) => {
                 suppliers: storeData.modelData[T.SUPPLIERS].map(supp => (
                     {
                         ...supp,
-                        products: supp.products.map(id =>
-                            storeData.modelData[T.PRODUCTS]
-                                .find(p => p.id === Number(id) || id)
-                                .map(val => val.name || val)
-                        )
+                        // products: supp.products.map(id =>
+                        //     storeData.modelData[T.PRODUCTS]
+                        //         .find(p => p.id === Number(id) || id)
+                        //         .map(val => val.name || val)
+                        // )
                     }
                 )),
             }
