@@ -3,7 +3,7 @@
 
 
 import React from 'react';
-import {BrowserRouter as Router, Link, Route, Switch, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Switch, Redirect, NavLink} from "react-router-dom";
 import ProductDisplay from "./ProductDisplay";
 import SupplierDisplay from "./SupplierDisplay";
 
@@ -33,9 +33,10 @@ export class Selector extends React.Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-2">
-                            <Link className="m-2 btn btn-primary btn-block" to="/">Default URL</Link>
-                            <Link className="m-2 btn btn-primary btn-block" to="/products">Products</Link>
-                            <Link className="m-2 btn btn-primary btn-block" to="/suppliers">Suppliers</Link>
+                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/" exact={true}>Default URL</NavLink>
+                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/products">Products</NavLink>
+                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/suppliers">Suppliers</NavLink>
+                            <NavLink className="m-2 btn btn-primary btn-block" activeCalssName="active" to="/old/data">Old Link</NavLink>
 
                             {/*<div><Link to="/data">Data</Link></div>*/}
                             {/*<div><Link to="/data/one">Link#1</Link></div>*/}
