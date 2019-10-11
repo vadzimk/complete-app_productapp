@@ -3,7 +3,7 @@
 
 
 import React from 'react';
-import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Switch, Redirect} from "react-router-dom";
 import ProductDisplay from "./ProductDisplay";
 import SupplierDisplay from "./SupplierDisplay";
 
@@ -55,7 +55,9 @@ export class Selector extends React.Component {
                             <Switch>
                                 <Route path="/products" component={ProductDisplay}/>
                                 <Route path="/suppliers" component={SupplierDisplay}/>
-                                <Route render={()=>this.renderMessage("Fallback Route")}/>
+                                <Redirect from="/old/data" to="/suppliers" />
+                                <Redirect to="/products"/>
+                                {/*<Route render={()=>this.renderMessage("Fallback Route")}/>*/}
                             </Switch>
                             {/*<Route path={ ["/data/one", "people/bob"] } exact={true} render={()=>this.renderMessage("Route-1")}/>*/}
                             {/*<Route path={ ["/data/two", "/people"] } render={()=>this.renderMessage("Route-2")}/>*/}
