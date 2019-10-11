@@ -33,9 +33,9 @@ export class Selector extends React.Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-2">
-                            <div><Link to="/">Default URL</Link></div>
-                            <div><Link to="/products">Products</Link></div>
-                            <div><Link to="/suppliers">Suppliers</Link></div>
+                            <Link className="m-2 btn btn-primary btn-block" to="/">Default URL</Link>
+                            <Link className="m-2 btn btn-primary btn-block" to="/products">Products</Link>
+                            <Link className="m-2 btn btn-primary btn-block" to="/suppliers">Suppliers</Link>
 
                             {/*<div><Link to="/data">Data</Link></div>*/}
                             {/*<div><Link to="/data/one">Link#1</Link></div>*/}
