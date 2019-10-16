@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Link, Route, Switch, Redirect, NavLink} from "r
 import ProductDisplay from "./ProductDisplay";
 import SupplierDisplay from "./SupplierDisplay";
 import {RouteInfo} from "./routing/RouteInfo";
+import {ToggleLink} from "./routing/ToggleLink";
 
 
 export class Selector extends React.Component {
@@ -35,12 +36,12 @@ export class Selector extends React.Component {
                     <div className="row">
                         <div className="col-2">
                             {/*<NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/" exact={true}>Default URL</NavLink>*/}
-                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/products">Products</NavLink>
-                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/suppliers">Suppliers</NavLink>
+                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/products">Products</ToggleLink>
+                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/suppliers">Suppliers</ToggleLink>
 
-                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info/match">Match</NavLink>
-                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info/location">Location</NavLink>
-                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info">All Info</NavLink>
+                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info/match">Match</ToggleLink>
+                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info/location">Location</ToggleLink>
+                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info">All Info</ToggleLink>
 
                             {/*<NavLink className="m-2 btn btn-primary btn-block" activeCalssName="active" to="/old/data">Old Link</NavLink>*/}
 
