@@ -37,9 +37,10 @@ export class Selector extends React.Component {
                             {/*<NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/" exact={true}>Default URL</NavLink>*/}
                             <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/products">Products</NavLink>
                             <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/suppliers">Suppliers</NavLink>
-                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info">Route Info</NavLink>
+
                             <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info/match">Match</NavLink>
                             <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info/location">Location</NavLink>
+                            <NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info">All Info</NavLink>
 
                             {/*<NavLink className="m-2 btn btn-primary btn-block" activeCalssName="active" to="/old/data">Old Link</NavLink>*/}
 
@@ -61,7 +62,7 @@ export class Selector extends React.Component {
                             <Switch>
                                 <Route path="/products" component={ProductDisplay}/>
                                 <Route path="/suppliers" component={SupplierDisplay}/>
-                                <Route path="/info/:datatype" component={RouteInfo} />
+                                <Route path="/info/:datatype?" component={RouteInfo} />
                                 {/*<Redirect from="/old/data" to="/suppliers" />*/}
                                 <Redirect to="/products"/>
                                 {/*<Route render={()=>this.renderMessage("Fallback Route")}/>*/}

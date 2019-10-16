@@ -24,8 +24,10 @@ export class RouteInfo extends React.Component {
             </h4>
             <table className="table table-sm table-striped bg-light">
                 <tbody>
-                {this.renderTable("Match", this.props.match, ["url", "path", "params", "isExact"])}
-                {this.renderTable("Location", this.props.location, ["key", "pathname", "search", "hash", "state"])}
+                {(this.props.match.params.datatype===undefined || this.props.match.params.datatype==="match")
+                && this.renderTable("Match", this.props.match, ["url", "path", "params", "isExact"])}
+                {(this.props.match.params.datatype===undefined || this.props.match.params.datatype === "location")
+                && this.renderTable("Location", this.props.location, ["key", "pathname", "search", "hash", "state"])}
                 </tbody>
             </table>
             <div className="text-center m-2 bg-light">
