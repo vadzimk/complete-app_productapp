@@ -3,12 +3,15 @@
 
 
 import React from 'react';
-import {BrowserRouter as Router, Link, Route, Switch, Redirect, NavLink} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Switch, Redirect, NavLink, withRouter} from "react-router-dom";
 import ProductDisplay from "./ProductDisplay";
 import SupplierDisplay from "./SupplierDisplay";
 import {RouteInfo} from "./routing/RouteInfo";
 import {ToggleLink} from "./routing/ToggleLink";
 
+//withRouter is a higher order component that provides access to the routing system without directly using a Route. When a component is passed to withRouter, it receives the match, location, history objects as props just as though it had been rendered by a Route using the component prop. This can be a convenient alternative to writing components that render a Route.
+//the withRouter function doesn't provide support for matching paths, which means that the match object is of little use. The location object, however, provides details of the application's current location, and the history object can be used for programmatic navigation.
+const RouteInfoHOC = withRouter(RouteInfo);
 
 export class Selector extends React.Component {
 
@@ -59,6 +62,8 @@ export class Selector extends React.Component {
                             {/*</div>*/}
                         </div>
                         <div className="col">
+
+                            <RouteInfoHOC/>
 
                             <Switch>
                                 <Route path="/products" component={ProductDisplay}/>
