@@ -3,6 +3,11 @@ import {Route, Link} from 'react-router-dom';
 
 export class ToggleLink extends React.Component {
 
+    //uses push method of the history to navigate to the locaction specified by the to prop
+    handleClick=(history)=>{
+        history.push(this.props.to)
+    };
+
     render() {
         return <Route path={this.props.to} exact={this.props.exact}
                       children={routeProps => {
@@ -12,9 +17,17 @@ export class ToggleLink extends React.Component {
 
                           const combinedClasses = `${baseClasses} ${routeProps.match ? activeClass : inActiveClass}`;
 
-                          return <Link to={this.props.to} className={combinedClasses}>
+
+                          //onClick handler passes the history object received from the Route component to the handleClick method
+                          return <button
+                              className={combinedClasses}
+                              onClick={()=>this.handleClick(routeProps.history)}>
                               {this.props.children}
-                          </Link>
+                          </button>
+
+                          {/*<Link to={this.props.to} className={combinedClasses}>*/}
+                          {/*    {this.props.children}*/}
+                          {/*</Link>*/}
                       }}
         />
     }
