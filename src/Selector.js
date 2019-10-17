@@ -3,7 +3,7 @@
 
 
 import React from 'react';
-import {BrowserRouter as Router, Link, Route, Switch, Redirect, NavLink, withRouter} from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Switch, Redirect, NavLink, withRouter, Prompt} from "react-router-dom";
 import ProductDisplay from "./ProductDisplay";
 import SupplierDisplay from "./SupplierDisplay";
 import {RouteInfo} from "./routing/RouteInfo";
@@ -62,6 +62,11 @@ export class Selector extends React.Component {
                             {/*</div>*/}
                         </div>
                         <div className="col">
+
+
+                            //message prop defines the message dispalyed to the user
+                            //when prop defines condition nedded to show the prompt
+                            <Prompt message={location =>`Do you want to navigate to ${location.pathname}?`}/>
 
                             <RouteInfoHOC/>
 
