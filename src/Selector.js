@@ -10,9 +10,11 @@ import {RouteInfo} from "./routing/RouteInfo";
 import {ToggleLink} from "./routing/ToggleLink";
 import {CustomPrompt} from "./routing/CustomPrompt";
 
-//withRouter is a higher order component that provides access to the routing system without directly using a Route. When a component is passed to withRouter, it receives the match, location, history objects as props just as though it had been rendered by a Route using the component prop. This can be a convenient alternative to writing components that render a Route.
-//the withRouter function doesn't provide support for matching paths, which means that the match object is of little use. The location object, however, provides details of the application's current location, and the history object can be used for programmatic navigation.
-const RouteInfoHOC = withRouter(RouteInfo);
+/*withRouter is a higher order component that provides access to the routing system without directly using a Route. When a component is passed to withRouter, it receives the match, location, history objects as props just as though it had been rendered by a Route using the component prop. This can be a convenient alternative to writing components that render a Route.
+    the withRouter function doesn't provide support for matching paths, which means that the match object is of little use. The location object, however, provides details of the application's current location, and the history object can be used for programmatic navigation.
+ */
+
+//const RouteInfoHOC = withRouter(RouteInfo);
 
 export class Selector extends React.Component {
 
@@ -56,23 +58,32 @@ export class Selector extends React.Component {
 
     //BrowserRouter which is aliased here to Router accepts a special prop - getUserConfirmation that is used to replace the default prompt with a custom function.
     render() {
+        const routes = React.Children.map(this.props.children, child => ({
+            component: child,
+            name: child.props.name,
+            url: `/${child.props.name.toLowerCase()}`
+        }));
+
         return (
             <Router getUserConfirmation={this.customGetUserConfirmation}>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-2">
-                            {/*<NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/" exact={true}>Default URL</NavLink>*/}
-                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active"
-                                        to="/products">Products</ToggleLink>
-                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active"
-                                        to="/suppliers">Suppliers</ToggleLink>
 
-                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active"
-                                        to="/info/match">Match</ToggleLink>
-                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active"
-                                        to="/info/location">Location</ToggleLink>
-                            <ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info">All
-                                Info</ToggleLink>
+                            {routes.map(r=><ToggleLink key={r.url} to={r.url}>{r.name}</ToggleLink>)}
+
+                            {/*<NavLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/" exact={true}>Default URL</NavLink>*/}
+                            {/*<ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active"*/}
+                            {/*            to="/products">Products</ToggleLink>*/}
+                            {/*<ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active"*/}
+                            {/*            to="/suppliers">Suppliers</ToggleLink>*/}
+
+                            {/*<ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active"*/}
+                            {/*            to="/info/match">Match</ToggleLink>*/}
+                            {/*<ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active"*/}
+                            {/*            to="/info/location">Location</ToggleLink>*/}
+                            {/*<ToggleLink className="m-2 btn btn-primary btn-block" activeClassName="active" to="/info">All*/}
+                            {/*    Info</ToggleLink>*/}
 
                             {/*<NavLink className="m-2 btn btn-primary btn-block" activeCalssName="active" to="/old/data">Old Link</NavLink>*/}
 
@@ -99,14 +110,18 @@ export class Selector extends React.Component {
                             {/*when prop defines condition needed to show the prompt*/}
                             <Prompt message={location => `Do you want to navigate to ${location.pathname}?`}/>
 
-                            <RouteInfoHOC/>
+                            {/*<RouteInfoHOC/>*/}
 
                             <Switch>
-                                <Route path="/products" component={ProductDisplay}/>
-                                <Route path="/suppliers" component={SupplierDisplay}/>
-                                <Route path="/info/:datatype?" component={RouteInfo}/>
-                                {/*<Redirect from="/old/data" to="/suppliers" />*/}
-                                <Redirect to="/products"/>
+
+                                {routes.map(r=><Route key={r.url} path={r.url} render={()=>r.component}/>)}
+                                <Redirect to={routes[0].url}/>
+
+                                {/*<Route path="/products" component={ProductDisplay}/>*/}
+                                {/*<Route path="/suppliers" component={SupplierDisplay}/>*/}
+                                {/*<Route path="/info/:datatype?" component={RouteInfo}/>*/}
+                                {/*/!*<Redirect from="/old/data" to="/suppliers" />*!/*/}
+                                {/*<Redirect to="/products"/>*/}
                                 {/*<Route render={()=>this.renderMessage("Fallback Route")}/>*/}
                             </Switch>
                             {/*<Route path={ ["/data/one", "people/bob"] } exact={true} render={()=>this.renderMessage("Route-1")}/>*/}
